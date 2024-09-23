@@ -13,9 +13,12 @@ Please follow these steps in order:
 
 5. To run the code for a single input case **./MatEls refine_new.dat matsTTH150TH120.dat 32 729 24 150 120 708.8**. Include an & at the end to run in the background. It took about 24 minutes on my Macbook Pro (M1). If your computer supports more threads, change THREAD_NUM from 6 to higher on line 40 of MatEls.cpp. For running a batch together **(./MatEls refine_new.dat matsTTH150TH10.dat 32 729 24 150 10 708.8;  ./MatEls refine_new.dat matsTTH150TH30.dat 32 729 24 150 30 708.8; ./MatEls refine_new.dat matsTTH150TH45.dat 32 729 24 150 45 708.8; ./MatEls refine_new.dat matsTTH150TH68.dat 32 729 24 150 68 708.8; ./MatEls refine_new.dat matsTTH150TH120.dat 32 729 24 150 120 708.8; ./MatEls refine_new.dat matsTTH70TH10.dat 32 729 24 70 10 708.8; ./MatEls refine_new.dat matsTTH70TH30.dat 32 729 24 70 30 708.7; ./MatEls refine_new.dat matsTTH70TH60.dat 32 729 24 70 60 708.6)&**
 
-6. The data generated contains the appropriate occupied/unoccupied states, the energy levels and appropriate transition matrix elements needed for the RIXS calculation. Now compile the program to compute the RIXS spectrum from the generated data on Mac as **clang++ rixs_matels.cpp -o rixs_matels** (or replace clang++ with g++ for GCC). Try executing ./rixs_matels to see the usage.
+6. The data generated contains the appropriate occupied/unoccupied states, the energy levels and appropriate transition matrix elements needed for the RIXS calculation. Since each file is quite big (> 500Mb) we have not included them here. Now compile the program to compute the RIXS spectrum from the generated data on Mac as **clang++ rixs_matels.cpp -o rixs_matels** (or replace clang++ with g++ for GCC). Try executing ./rixs_matels to see the usage.
 
 7. To generate the RIXS data for 2θ = 150°, execute **(./rixs_matels matsTTH150TH10.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH150TH30.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH150TH45.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH150TH68.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH150TH120.dat 1.13 0.8 0.075 1.)&**
 
-8. For 2θ = 70°, we need to modify the the inputs since omega_in is slightly different
-**(./rixs_matels matsTTH70TH10.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH70TH30.dat 1.03 0.8 0.075 1.; ./rixs_matels matsTTH70TH60.dat 0.93 0.8 0.075 1.)&**
+8. For 2θ = 70°, we need to modify the the inputs since omega_in is slightly different **(./rixs_matels matsTTH70TH10.dat 1.13 0.8 0.075 1.; ./rixs_matels matsTTH70TH30.dat 1.03 0.8 0.075 1.; ./rixs_matels matsTTH70TH60.dat 0.93 0.8 0.075 1.)&**
+
+9. The genetared files (for example **rixs_matsTTH150TH120.dat**) can be plotted directly to visualise the RIXS spectrum. For example run the command **plot 'rixs_matsTTH150TH120.dat' u 1:2 w lp
+** on Gnuplot.
+
